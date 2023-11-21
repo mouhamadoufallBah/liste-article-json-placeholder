@@ -1,0 +1,12 @@
+.articles{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1%;
+  align-items: center;
+  margin-top: 50px;
+  
+}
+
+.article{
+  height: 300px;
+}
