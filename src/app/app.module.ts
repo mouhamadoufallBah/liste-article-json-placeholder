@@ -7,6 +7,7 @@ import { ListArticlesComponent } from './articles/list-articles/list-articles.co
 import { DetailArticlesComponent } from './articles/detail-articles/detail-articles.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListArticleByUserComponent } from './articles/list-article-by-user/list-article-by-user.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,12 +17,12 @@ import { ListArticleByUserComponent } from './articles/list-article-by-user/list
     ListArticlesComponent,
     DetailArticlesComponent,
     ListArticleByUserComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],

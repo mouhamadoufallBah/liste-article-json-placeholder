@@ -8,16 +8,40 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class ListArticleByUserComponent {
   articles: any;
+  currentUser = 1;
 
-  constructor(private articlesService: ArticleService){}
+  titre: string = "";
+  contenue: string = "";
 
-  ngOnInit(){
-    this.articlesService.getArticle().subscribe(
+
+
+  constructor(private articlesService: ArticleService) { }
+
+  ngOnInit() {
+    this.articlesService.getArticles().subscribe(
       (data) => {
-        this.articles = data.filter((elt: any) => elt.userId===1)
+        this.articles = data.filter((elt: any) => elt.userId === this.currentUser)
       },
       (error) => {
         console.error('Erreur lors de la récupération des articles', error);
+      }
+    );
+  }
+
+  addArticle() {
+    const article = {
+      "userId": this.currentUser,
+      "id": this.articles.length + 1,
+      "title": this.titre,
+      "body": this.contenue
+    }
+
+    this.articlesService.addArticle(article).subscribe(
+      (response) => {
+        console.log('Article créé avec succès:', response);
+      },
+      (error) =>{
+        console.error('Erreur lors de la création de l\'article', error);
       }
     );
 

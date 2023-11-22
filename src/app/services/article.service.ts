@@ -11,8 +11,12 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  getArticle(): Observable<Article[]>{
-    return this.http.get<Article[]>(`https://jsonplaceholder.typicode.com/posts` );
+  getArticles(): Observable<Article[]>{
+    return this.http.get<Article[]>(`https://jsonplaceholder.typicode.com/posts`);
+  }
+
+  addArticle(articleData: any): Observable<any>{
+    return this.http.post<any>(`https://jsonplaceholder.typicode.com/posts`, articleData)
   }
 
 }

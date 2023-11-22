@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
+import { CommentaireService } from 'src/app/services/commentaire.service';
 
 @Component({
   selector: 'app-list-articles',
@@ -9,11 +10,15 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class ListArticlesComponent implements OnInit{
   articles: any;
+  commentaireByArticle:any;
 
-  constructor(private articlesService: ArticleService){}
+  searchArticle = "";
+  itemSearch: any;
+
+  constructor(private articlesService: ArticleService, private commentaireService: CommentaireService){}
 
   ngOnInit(){
-    this.articlesService.getArticle().subscribe(
+    this.articlesService.getArticles().subscribe(
       (data) => {
         this.articles = data
       },
@@ -21,8 +26,19 @@ export class ListArticlesComponent implements OnInit{
         console.error('Erreur lors de la récupération des articles', error);
       }
     );
+  }
 
+  viewComment(id: number){
+    this.commentaireService.getComments().subscribe(
+      (response) => {
+        this.commentaireByArticle = response.filter((elt: any) => elt.postId === id);
+      }
+    );
+  }
 
+  articleFound() {
+    this.itemSearch = this.articles.filter(
+      (item: any) => (item.title.toLowerCase().includes(this.searchArticle.toLowerCase())));
   }
 
 
