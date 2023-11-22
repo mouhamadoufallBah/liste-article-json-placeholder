@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ListArticlesComponent } from './articles/list-articles/list-articles.component';
 import { DetailArticlesComponent } from './articles/detail-articles/detail-articles.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceComponent } from './auth/service/service.component';
 
 
 
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     ListArticlesComponent,
     DetailArticlesComponent,
+    ServiceComponent,
 
   ],
   imports: [
