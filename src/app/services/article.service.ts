@@ -14,4 +14,5 @@ export class ArticleService {
   getArticle(): Observable<Article[]>{
     return this.http.get<Article[]>(`https://jsonplaceholder.typicode.com/posts` );
   }
+
 }
