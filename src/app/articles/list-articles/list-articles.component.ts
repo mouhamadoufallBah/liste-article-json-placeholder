@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { CommentaireService } from 'src/app/services/commentaire.service';
@@ -15,7 +16,8 @@ export class ListArticlesComponent implements OnInit{
   searchArticle = "";
   itemSearch: any;
 
-  constructor(private articlesService: ArticleService, private commentaireService: CommentaireService){}
+  currentUser: any;
+  constructor(private route:Router,private articlesService: ArticleService, private commentaireService: CommentaireService){}
 
   ngOnInit(){
     this.articlesService.getArticles().subscribe(
@@ -26,6 +28,10 @@ export class ListArticlesComponent implements OnInit{
         console.error('Erreur lors de la récupération des articles', error);
       }
     );
+
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '0')
+
+    console.log(this.currentUser)
   }
 
   viewComment(id: number){
@@ -39,6 +45,13 @@ export class ListArticlesComponent implements OnInit{
   articleFound() {
     this.itemSearch = this.articles.filter(
       (item: any) => (item.title.toLowerCase().includes(this.searchArticle.toLowerCase())));
+
+    }
+
+  logout(){
+    localStorage.removeItem('currentUser');
+
+    this.route.navigate(['/', 'connexion'])
   }
 
 

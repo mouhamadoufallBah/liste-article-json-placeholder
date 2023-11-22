@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListArticlesComponent } from './articles/list-articles/list-articles.component';
 import { DetailArticlesComponent } from './articles/detail-articles/detail-articles.component';
 import { ListArticleByUserComponent } from './articles/list-article-by-user/list-article-by-user.component';
+import { AuthComponent } from './authentification/auth/auth.component';
 
 const routes: Routes = [
+  {path: 'connexion', component:AuthComponent},
   {path: 'articles', component:ListArticlesComponent},
   {path: 'articlesByUser', component:ListArticleByUserComponent},
   {path: 'detail-articles', component:DetailArticlesComponent},

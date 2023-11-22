@@ -8,6 +8,8 @@ import { DetailArticlesComponent } from './articles/detail-articles/detail-artic
 import { HttpClientModule } from '@angular/common/http';
 import { ListArticleByUserComponent } from './articles/list-article-by-user/list-article-by-user.component';
 import { FormsModule } from '@angular/forms';
+import { AuthComponent } from './authentification/auth/auth.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 
 
@@ -17,6 +19,8 @@ import { FormsModule } from '@angular/forms';
     ListArticlesComponent,
     DetailArticlesComponent,
     ListArticleByUserComponent,
+    AuthComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

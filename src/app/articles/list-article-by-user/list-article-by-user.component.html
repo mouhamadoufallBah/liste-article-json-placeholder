@@ -1,4 +1,6 @@
+
 <div class="container mt-5">
+  <a routerLink="/articles" class="btn btn-secondary" *ngIf="currentUser>0">Acceuil</a>
   <div class="card border border-0 shadow p-2">
     <div class="d-flex justify-content-between">
       <!-- Button trigger modal -->
@@ -57,7 +59,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addArticle()">Publier</button>
+        <button type="button" class="btn btn-primary " data-bs-dismiss="modal" (click)="addArticle()">Publier</button>
       </div>
     </div>
   </div>
