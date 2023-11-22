@@ -33,7 +33,7 @@ export class ListArticleByUserComponent implements OnInit {
     //     console.error('Erreur lors de la récupération des articles', error);
     //   }
     //   );
-    this.articles = this.dbArticle.filter((elt: any) => elt.userId === this.currentUser);
+    this.articles = this.dbArticle.filter((elt: any) => elt.userId === this.currentUser).reverse();
 
   }
 
@@ -58,11 +58,12 @@ export class ListArticleByUserComponent implements OnInit {
       this.articlesService.addArticle(article).subscribe(
         (response) => {
           this.dbArticle.push(article);
-          
+
           localStorage.setItem('articles', JSON.stringify(this.dbArticle))
           this.showMessage('success', 'Ajout avec succées');
 
-          this.articles = this.dbArticle.filter((elt: any) => elt.userId === this.currentUser);
+          this.articles = this.dbArticle.filter((elt: any) => elt.userId === this.currentUser).reverse();
+
 
           this.titre == "";
           this.contenue == ""

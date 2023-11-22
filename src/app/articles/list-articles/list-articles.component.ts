@@ -34,6 +34,7 @@ export class ListArticlesComponent implements OnInit{
     console.log(this.currentUser)
   }
 
+
   viewComment(id: number){
     this.commentaireService.getComments().subscribe(
       (response) => {
