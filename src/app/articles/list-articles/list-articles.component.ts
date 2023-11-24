@@ -9,33 +9,37 @@ import { CommentaireService } from 'src/app/services/commentaire.service';
   templateUrl: './list-articles.component.html',
   styleUrls: ['./list-articles.component.css']
 })
-export class ListArticlesComponent implements OnInit{
+export class ListArticlesComponent implements OnInit {
   articles: any;
-  commentaireByArticle:any;
+  commentaireByArticle: any;
 
   searchArticle = "";
   itemSearch: any;
 
   currentUser: any;
-  constructor(private route:Router,private articlesService: ArticleService, private commentaireService: CommentaireService){}
+  constructor(private route: Router, private articlesService: ArticleService, private commentaireService: CommentaireService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.articlesService.getArticles().subscribe(
       (data) => {
         this.articles = data
+        if (!localStorage.getItem('articles')) {
+          localStorage.setItem('articles', JSON.stringify(this.articles));
+        }
       },
       (error) => {
         console.error('Erreur lors de la récupération des articles', error);
       }
     );
 
+
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '0')
 
-    console.log(this.currentUser)
   }
 
 
-  viewComment(id: number){
+  viewComment(id: number) {
     this.commentaireService.getComments().subscribe(
       (response) => {
         this.commentaireByArticle = response.filter((elt: any) => elt.postId === id);
@@ -47,9 +51,9 @@ export class ListArticlesComponent implements OnInit{
     this.itemSearch = this.articles.filter(
       (item: any) => (item.title.toLowerCase().includes(this.searchArticle.toLowerCase())));
 
-    }
+  }
 
-  logout(){
+  logout() {
     localStorage.removeItem('currentUser');
 
     this.route.navigate(['/', 'connexion'])
